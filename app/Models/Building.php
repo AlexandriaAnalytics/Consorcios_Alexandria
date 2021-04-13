@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Building extends Model
 {
-	protected $fillable = ['name', 'avatar'];
+	protected $fillable = ['name', 'address', 'units'];
 	 /**
 	 * Get the route key for the model.
 	 *

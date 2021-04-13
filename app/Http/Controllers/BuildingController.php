@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Building;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreProyectRequest;
+use App\Http\Requests\StoreBuildingRequest;
 
 class BuildingController extends Controller
 {
@@ -37,18 +37,13 @@ class BuildingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProyectRequest $request)
+    public function store(StoreBuildingRequest $request)
     {
-        if ($request->hasfile('avatar')) {
-           $file = $request->file('avatar');
-           $namefile = time().$file->getClientOriginalName();
-           $file->move(public_path().'/images/', $namefile);
-        }
-       $building = new Building();
+        $building = new Building();
+        $building->slug = ($request->input('name').time());
         $building->name = $request->input('name');
-        //$project->slug = $request->input('slug');;
-        $building->slug = ($request->input('name')). time(); //($request->input('input-lastname')) .
-        $building->avatar = $namefile;
+        $building->address = $request->input('address');
+        $building->units = $request->input('units');
         $building->save();
         
         return redirect()->route('buildings.index')->with('status','Creación Correcta.');
@@ -85,17 +80,10 @@ class BuildingController extends Controller
      */
     public function update(Request $request, Building $building)
     {
-        $building->fill($request->except('avatar'));
-
-        if ($request->hasfile('avatar')) {
-           $file = $request->file('avatar');
-           $namefile = time().$file->getClientOriginalName();
-           $building->avatar = $namefile;
-           $file->move(public_path().'/images/', $namefile);
-        }
+        $building->fill($request->all());
         $building->save();
 
-        return redirect()->route('buildings.show', [$building])->with('status','Actualización Correcta.');
+        return redirect()->route('buildings.index', [$building])->with('status','Actualización Correcta.');
     }
 
     /**
@@ -106,9 +94,6 @@ class BuildingController extends Controller
      */
     public function destroy(Building $building)
     {
-        $file_path = public_path().'/images/'.$building->avatar;
-        \File::delete($file_path);
-        
         $building->delete();
         return redirect()->route('buildings.index')->with('status','Eliminación Correcta.');
     }

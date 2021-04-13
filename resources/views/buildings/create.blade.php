@@ -1,31 +1,38 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Crear Nuevo Edificio') }}
-        </h2> 
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row">
+                    <div class="col-md-10 my-auto">
+                        <h2 class="font-semibold text-xl text-gray-800 leading-tight center">
+                            {{ __('Crear Nuevo Edificio') }}
+                        </h2> 
+                    </div><!-- /.col -->
                     <div class="col">
-                        <ol class="breadcrumb float-right">
-                            <li class="breadcrumb-item">
-                                <a class="btn btn-outline-success"
-                                    href="{!! route('buildings.index') !!}">
-                                    <i class="fa fa-plus"></i>
-                                    <span class="d-none d-sm-inline">Regresar</span>
-                                </a>
-                            </li>
-                        </ol>
+                        <a class="btn btn-outline-success"
+                            href="{!! route('buildings.index') !!}">
+                            <span class="">Regresar</span>
+                        </a>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
     </x-slot>
-	@include('common.errors')
-	{!! Form::open(['route' => 'buildings.store', 'method' => 'POST', 'files' => true ]) !!}
-		{{-- incluimos una subvista de formulario --}}
-		@include('buildings.form')
-
-		{!! Form::submit('Guardar', ['class' => 'btn btn-primary'])!!}
-	{!! Form::close()!!}
+    @include('common.errors')
+    <div class="container">
+        <div class="row ">
+            <div class="col-lg-7 mx-auto">
+                <div class="card mt-2 mx-auto p-4 bg-light">
+                    <div class="card-body bg-light">
+                        <div class="container">
+                        	{!! Form::open(['route' => 'buildings.store', 'method' => 'POST', 'files' => true ]) !!}
+                        		{{-- incluimos una subvista de formulario --}}
+                        		@include('buildings.form')
+                        	{!! Form::close()!!}
+                        </div>
+                    </div>
+                </div> <!-- /.8 -->
+            </div> <!-- /.row-->
+        </div>
+    </div>
 </x-app-layout>
