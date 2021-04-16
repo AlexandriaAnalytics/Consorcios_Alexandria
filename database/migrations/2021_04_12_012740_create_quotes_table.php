@@ -18,7 +18,7 @@ class CreateQuotesTable extends Migration
             $table->string('slug')->unique();
             $table->integer('amount');
             $table->date('duration');
-            $table->boolean('status');
+            $table->boolean('aproved');
             $table->timestamps();
         });
     }

@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-md-10 my-auto">
                         <h2 class="font-semibold text-xl text-gray-800 leading-tight center">
-                            {{ __('Crear Nuevo Proyecto') }}
+                            {{ __('Listado de Proyectos') }}
                         </h2> 
                     </div><!-- /.col -->
                     <div class="col">

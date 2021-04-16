@@ -5,12 +5,12 @@
                 <div class="row">
                     <div class="col-md-10 my-auto">
                         <h2 class="font-semibold text-xl text-gray-800 leading-tight center">
-                            {{ __('Crear Nuevo Usuario') }}
+                            {{ __('Crear Nuevo Presupuesto') }}
                         </h2> 
                     </div><!-- /.col -->
                     <div class="col">
                         <a class="btn btn-outline-success"
-                            href="{!! route('users.index') !!}">
+                            href="{!! route('quotes.index') !!}">
                             <span class="">Regresar</span>
                         </a>
                     </div><!-- /.col -->
@@ -25,9 +25,9 @@
                 <div class="card mt-2 mx-auto p-4 bg-light">
                     <div class="card-body bg-light">
                         <div class="container">
-                                {!! Form::open(['route' => 'users.store', 'method' => 'POST', 'files' => true ]) !!}
+                                {!! Form::open(['route' => 'quotes.store', 'method' => 'POST', 'files' => true ]) !!}
                             		{{-- incluimos una subvista de formulario --}}
-                            		@include('users.form')
+                            		@include('quotes.form')
                             	{!! Form::close()!!}
                         </div>
                     </div>

@@ -7,5 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Quote extends Model
 {
-    use HasFactory;
+	protected $fillable = ['amount', 'duration', 'Aproved'];
+	 /**
+	 * Get the route key for the model.
+	 *
+	 * @return string
+	 */
+	public function getRouteKeyName()
+	{
+	    return 'slug';
+	}
 }

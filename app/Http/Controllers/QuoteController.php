@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Quote;
 use Illuminate\Http\Request;
 
 class QuoteController extends Controller
@@ -11,9 +12,11 @@ class QuoteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return 'Controlador de Presupuestos';
+        $quotes = Quote::all();
+
+        return view('quotes.index', compact('quotes'));
     }
 
     /**
@@ -23,7 +26,7 @@ class QuoteController extends Controller
      */
     public function create()
     {
-        //
+        return view('quotes.create');
     }
 
     /**
@@ -34,7 +37,16 @@ class QuoteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
+        $quote = new Quote();
+        // revisar relaciones
+        $project->slug = ($request->input('user_id')). time();
+        $quote->amount = $request->input('amount');
+        $quote->duration = $request->input('duration');
+        $quote->aproved = False;
+        $quote->save();
+        
+        return redirect()->route('projects.index')->with('status','Creación Correcta.');
     }
 
     /**
@@ -43,9 +55,9 @@ class QuoteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Quote $quote)
     {
-        //
+        return view('quotes.show', compact('quotes'));
     }
 
     /**
@@ -54,9 +66,9 @@ class QuoteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Quote $quote)
     {
-        //
+        return view('quotes.edit', compact('quote'));
     }
 
     /**
@@ -66,9 +78,13 @@ class QuoteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Quote $quote)
     {
-        //
+        dd($request);
+        $quote->fill($request->all());
+        $quote->save();
+
+        return redirect()->route('quotes.show', [$quote])->with('status','Actualización Correcta.');
     }
 
     /**
@@ -77,8 +93,9 @@ class QuoteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Quote $quote)
     {
-        //
+        $quote->delete();
+        return redirect()->route('quotes.index')->with('status','Eliminación Correcta.');
     }
 }

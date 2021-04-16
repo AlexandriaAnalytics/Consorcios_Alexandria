@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-md-10 my-auto">
                         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                            {{ __('Edificios') }}
+                            {{ __('Listado de Edificios') }}
                         </h2> 
                     </div>
                     <div>
