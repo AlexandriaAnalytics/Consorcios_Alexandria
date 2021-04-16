@@ -44,6 +44,19 @@
 	        </div>
 	    </div>
 	    <div class="row">
+	        <div class="col-md-12">
+	            <div class="form-group"> 
+	            	{!! Form::label('building_id', 'Edificio')!!}
+	            	<select id="building_id" name="building_id" class="form-control selectpicker" multiple data-live-search="true" required="required" data-error="Please specify your building.">
+{{-- 						<option value="" disabled selected >-- Seleccione el edificio --</option> --}}
+						@foreach ($buildings as $building)
+							<option value="{{$building->id }}">{{ $building->name }}</option>
+						@endforeach
+	                </select> 
+	            </div>
+	        </div>
+	    </div>
+	    <div class="row">
 	        <div class="col-md-3">
 	            <div class="form-group"> 
 	            	{!! Form::label('avatar', 'Avatar')!!} 

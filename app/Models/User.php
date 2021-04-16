@@ -60,6 +60,10 @@ class User extends Authenticatable
     public function hasPermission($name){
         return $this->role->permissions()->where('name', $name)->exists();
     }
+
+    public function buildings(){
+        return $this->belongsToMany(Building::class);
+    }
 }
 
 

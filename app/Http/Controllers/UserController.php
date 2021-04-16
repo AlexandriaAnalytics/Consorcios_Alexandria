@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Building;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUserRequest;
 
@@ -30,8 +31,9 @@ class UserController extends Controller
     {
         //busco los roles
         $roles = Role::get();
+        $buildings = Building::get();
         //devuelvo la vista de creacion junto con la variable roles
-        return view('users.create', compact('roles'));
+        return view('users.create', compact('roles', 'buildings'));
     }
 
     /**

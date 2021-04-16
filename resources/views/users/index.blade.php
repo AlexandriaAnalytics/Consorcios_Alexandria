@@ -34,9 +34,10 @@
                 				        <tr>
                                             <th>Nombre</th>
                 				            <th>Email</th>
+                				            <th>Email_verified_at</th>
                                             <th>Rol</th>
                                             <th>Permisos</th>
-                				            <th>Email_verified_at</th>
+                                            <th>Edificio</th>
                 				            <th>Acciones</th>
                 				        </tr>
                 				    </thead>
@@ -45,6 +46,14 @@
                 					        <tr>
                 					            <td>{{$user->name}}</td>
                 					            <td>{{$user->email}}</td>
+                					            <td>
+                                                    @if ($user->email_verified_at === null)
+                                                        Null
+                                                    @else
+                                                        {{$user->email_verified_at}}
+                                                    @endif
+
+                                                </td>
                                                 <td>{{$user->role->name}}</td>  
                                                 <td>
                                                     <ul class="list-group list-group-flush">
@@ -55,15 +64,16 @@
                                                             </li>
                                                         @endforeach
                                                     </ul>
-                                                </td>  
-                					            <td>
-                                                    @if ($user->email_verified_at === null)
-                                                        Null
-                                                    @else
-                                                        {{$user->email_verified_at}}
-                                                    @endif
-
                                                 </td>
+                                                <td>
+                                                    <ul class="list-group list-group-flush">
+                                                        @foreach($user->buildings as $building)
+                                                            <li class="list-group-item">
+                                                                {{ $building->name}}
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                </td>   
                 					            <td>
                                                     <a href="/users/{{$user->slug}}" class="btn btn-success">Ver Detalles</a>
                                                     <a href="/users/{{$user->slug}}/edit" class="btn btn-info">Editar</a>
