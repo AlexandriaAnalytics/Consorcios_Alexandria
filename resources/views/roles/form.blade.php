@@ -21,13 +21,13 @@
             <div class="col-md-12">
                 <div class="form-group">
                     @foreach($permissions as $permission)
-					<div class="input-group mb-3">
+					<div class="input-group mb-3 form-control">
 				  		<div class="input-group-prepend">
-				    		<div class="input-group-text">
-				      			<input type="checkbox" aria-label="Checkbox for following text input"  value="{{ $permission->id }}">
+				    		<div class="input-group-text form-control">
+				      			<input type="checkbox" aria-label="Checkbox for following text input" id="permission_id" name="permission_id[]" value="{{ $permission->id }}">
 				    		</div>
 				  		</div>
-				  	<input type="text" class="form-control" value="{{ $permission->name }}" readonly> {{-- falta mostrar actuales {{ $permission->id == $role->permission->id ? 'selected' : '' }}> --}}
+				  				<input type="text"  value="{{ $permission->name }}" readonly> {{-- falta mostrar actuales {{ $permission->id == $role->permission->id ? 'selected' : '' }}> --}}
 					</div>
                     @endforeach
             	</div>

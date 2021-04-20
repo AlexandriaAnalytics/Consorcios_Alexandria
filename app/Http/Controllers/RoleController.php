@@ -40,7 +40,17 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $permissionsIds = $data['permission_id'];
+        dd($permissionsIds);
+        
+        $role = new Role();
+        $role->name = $data['name'];
+        $role->description = $data['description'];
+        $role->permissions()->attach($permissionsIds);
+        $role->save();
+
+        return redirect()->route('roles.index')->with('status','Creación Correcta.');
     }
 
     /**
