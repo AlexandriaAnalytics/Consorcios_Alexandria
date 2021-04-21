@@ -4,6 +4,18 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+DROP TABLE IF EXISTS `building_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `building_user` (
+  `building_id` bigint(20) unsigned NOT NULL,
+  `user_id` bigint(20) unsigned NOT NULL,
+  KEY `building_user_building_id_foreign` (`building_id`),
+  KEY `building_user_user_id_foreign` (`user_id`),
+  CONSTRAINT `building_user_building_id_foreign` FOREIGN KEY (`building_id`) REFERENCES `buildings` (`id`),
+  CONSTRAINT `building_user_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `buildings`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -81,7 +93,7 @@ DROP TABLE IF EXISTS `projects`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `projects` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -94,7 +106,7 @@ DROP TABLE IF EXISTS `quotes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `quotes` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `amount` int(11) NOT NULL,
   `duration` date NOT NULL,
@@ -121,7 +133,7 @@ DROP TABLE IF EXISTS `services`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `services` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -171,3 +183,4 @@ INSERT INTO `migrations` VALUES (8,'2021_04_08_044357_create_permission_role_tab
 INSERT INTO `migrations` VALUES (9,'2021_04_10_020241_add_column_role_id_to_users_table',1);
 INSERT INTO `migrations` VALUES (10,'2021_04_12_012719_create_services_table',2);
 INSERT INTO `migrations` VALUES (11,'2021_04_12_012740_create_quotes_table',3);
+INSERT INTO `migrations` VALUES (12,'2021_04_16_024850_create_building_user_table',4);
