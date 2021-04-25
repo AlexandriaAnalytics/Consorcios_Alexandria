@@ -1,41 +1,66 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Detalles Proyecto') }}
-        </h2> 
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col">
-                        <ol class="breadcrumb float-right">
-                            <li class="breadcrumb-item">
-                                <a class="btn btn-outline-success"
-                                    href="{!! route('projects.index') !!}">
-                                    <i class="fa fa-plus"></i>
-                                    <span class="d-none d-sm-inline">Regresar</span>
-                                </a>
-                            </li>
-                        </ol>
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
-        </div>
-    </x-slot>
-                <div class="col-lg-12">
-                    <div class="card text-center">
-                    	<img style="height: 200px; width: 200px; background-color: #EFEFEF" class="card-img-top rounded-circle float-left mx-auto d-block" src="/images/{{$project->avatar}}">
-                        <div class="card-body">
-                    		<div class="card-title"><h1 class="m-0 text-dark">Proyecto {{$project->name}}</h1></div>
-                    		<div class="card-text"><p>La convergence n’est pas la divergence, la concertation politique de toute la République Démocratique du Congo fait allusion à réglementer une certaine compétitivité comme pour le lancement de Troposphère V, mais oui.Mesdames et messieurs fidèles, le colloque vers la compromettance pour des saint-bioules est censé(e) se baser sur cette climatologie vers Lovanium, mais oui.Lorsque l'on parle des végétaliens, du végétalisme, l'activisme par rapport aux diplomaties peut informatiser la quatripartie dans les camps militaires non-voyants, tu sais ça.</p>
-                    		</div>
-                            <a href="/projects/{{$project->slug}}/edit" class="btn btn-success">Editar</a>
-
-                            {!! Form::open(['route' => ['projects.destroy', $project->slug], 'method' => 'DELETE']) !!}
-                                {!! Form::submit('Eliminar', ['class' => 'btn btn-danger'])!!}
-                            {!! Form::close()!!}
+<x-postreg>
+<div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mt-2 mx-auto p-4 bg-light">
+                    <div class="card-body bg-light">
+                        <div class="card-title">
+                            <h3 class="m-0 text-dark">¡Bienvenido!</h3>
+                        </div>
+                        <div class="container">
+                            <form id="contact-form" role="form">
+                                <div class="controls">
+                                    {{-- fila de Avatar --}}
+                                    <div class="row">
+                                        <div class="col-md-12 ">
+                                            <div class="card-title">
+                                                <img style="height: 200px; width: 200px; background-color: #EFEFEF" class="card-img-top rounded-circle mx-auto d-block" src="/images/default.svg{{-- {{$user->avatar}} --}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- fila de nombre --}}
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                {{-- {!! Form::label('name', 'Nombre')!!} --}}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="text" name="name" value="{{-- {{$user->name}} --}}" class="form-control-plaintext" readonly> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- fila de email --}}
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                {{-- {!! Form::label('name', 'Email')!!} --}}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="text" name="name" value="{{-- {{$user->email}} --}}" class="form-control-plaintext" readonly> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- fila de rol --}}
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                {{-- {!! Form::label('name', 'Rol')!!} --}}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="text" name="name" value="{{-- {{$user->role->name}} --}}" class="form-control-plaintext" readonly> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                    <!--/.card -->
                 </div>
-    </div>
-</x-app-layout>
+            </div> <!-- /.8 -->
+</x-postreg>

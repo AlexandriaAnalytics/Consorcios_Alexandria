@@ -21,6 +21,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/users.details', function () {
+    return view('users.details');
+})->middleware(['auth'])->name('New User');
+
 Route::resource('users', 'App\Http\Controllers\UserController')->middleware(['auth']);
 Route::resource('roles', 'App\Http\Controllers\RoleController')->middleware(['auth']);
 Route::resource('permissions', 'App\Http\Controllers\PermissionController')->middleware(['auth']);
